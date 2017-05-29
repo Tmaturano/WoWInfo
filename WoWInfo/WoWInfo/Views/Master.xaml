@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:WoWInfo.Controls;assembly:WoWInfo"
+             x:Class="WoWInfo.Views.Master"
+             Title="Menu"
+             BackgroundColor="#e8e8e8"
+             Icon="menu.png">
+
+    <StackLayout Orientation="Vertical">
+        
+        <StackLayout BackgroundColor="#e74c3c"
+                     HeightRequest="75">
+
+            <Label Text="{Binding UserName}"
+                 FontSize="Medium"
+                 VerticalOptions="CenterAndExpand"
+                 TextColor="White"
+                 HorizontalOptions="Start"/>
+        </StackLayout>
+
+
+        <controls:MyListView  
+                        ItemsSource="{Binding MenuList}"              
+                        ItemTappedCommand="{Binding OpenPageCommand }"
+                        HasUnevenRows="True"
+                        RowHeight="60"                        
+                        BackgroundColor="#e8e8e8">
+
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <StackLayout VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal"
+                             Padding="20,10,0,10"
+                             Spacing="20">
+
+                         <Image Source="{Binding Icon}"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         VerticalOptions="Center" />
+
+                         <Label Text="{Binding Title}"
+                         FontSize="Medium"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </controls:MyListView>
+    </StackLayout>
+
+</ContentPage>

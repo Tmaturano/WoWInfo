@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WoWInfo.Views.Page1">
+
+
+
+    <Grid Padding="20" RowSpacing="10" IsVisible="{Binding IsGridCharacterInfoVisible}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>        
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Nome:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="0" Grid.Column="0" Margin="45,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Servidor:" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="1" Grid.Column="0" Margin="60,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Raça:" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="2" Grid.Column="0" Margin="40,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Facção:" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="3" Grid.Column="0" Margin="55,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Genero:" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="4" Grid.Column="0" Margin="52,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Level:" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="110" Grid.Row="5" Grid.Column="0" Margin="40,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Classe:" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="6" Grid.Column="0" Margin="50,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Tipo de poder:" Grid.Row="7" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="teste" Grid.Row="7" Grid.Column="0" Margin="95,0,0,0" FontSize="Medium"/>
+
+        <Label Text="Honorable Kills:" Grid.Row="8" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+        <Label Text="20000" Grid.Row="8" Grid.Column="0" Margin="105,0,0,0" FontSize="Medium"/>
+
+    </Grid>
+
+
+
+
+
+</ContentPage>
