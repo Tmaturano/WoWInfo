@@ -13,6 +13,31 @@ namespace WoWInfo.ViewModels
     {
         #region Properties and variables
         private readonly IBattleNetApi _battleNetApi;
+
+        private string _nameToSearch;
+
+        public string NameToSearch
+        {
+            get { return _nameToSearch; }
+            set
+            {
+                SetProperty(ref _nameToSearch, value);
+                SearchCharacterCommand.ChangeCanExecute();
+            }
+        }
+
+        private string _realmToSearch;
+
+        public string RealmToSearch
+        {
+            get { return _realmToSearch; }
+            set
+            {
+                SetProperty(ref _realmToSearch, value);
+                SearchCharacterCommand.ChangeCanExecute();
+            }
+        }
+
         private string _name;
 
         public string Name
@@ -20,8 +45,7 @@ namespace WoWInfo.ViewModels
             get { return _name; }
             set
             {
-                SetProperty(ref _name, value);
-                SearchCharacterCommand.ChangeCanExecute();
+                SetProperty(ref _name, value);                
             }
         }
 
@@ -33,7 +57,6 @@ namespace WoWInfo.ViewModels
             set
             {
                 SetProperty(ref _realm, value);
-                SearchCharacterCommand.ChangeCanExecute();
             }
         }
 
@@ -70,7 +93,7 @@ namespace WoWInfo.ViewModels
                 SetProperty(ref _powerType, value);
             }
         }
-        
+
         #endregion
 
         #region Race
@@ -132,23 +155,46 @@ namespace WoWInfo.ViewModels
             }
         }
 
+        private bool _isMessageVisible;
+
+        public bool IsMessageVisible
+        {
+            get { return _isMessageVisible; }
+            set
+            {
+                SetProperty(ref _isMessageVisible, value);
+            }
+        }
+        
+        private string _message;
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                SetProperty(ref _message, value);
+            }
+        }
+
         #endregion
 
         public Command SearchCharacterCommand { get; }
 
         public CharacterViewModel()
         {
+            Message = string.Empty;
             IsBusy = false;
             IsGridCharacterInfoVisible = false;
             _battleNetApi = DependencyService.Get<IBattleNetApi>();
             SearchCharacterCommand = new Command(ExecuteSearchCharacterCommandAsync, CanExecuteSearchCharacterCommand);
-        }        
+        }
 
         #region Methods
 
         private bool CanExecuteSearchCharacterCommand()
         {
-            return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Realm);
+            return !string.IsNullOrWhiteSpace(NameToSearch) && !string.IsNullOrWhiteSpace(RealmToSearch);
         }
 
         private async void ExecuteSearchCharacterCommandAsync()
@@ -156,26 +202,36 @@ namespace WoWInfo.ViewModels
             try
             {
                 IsBusy = true;
+                Message = string.Empty;                
                 IsGridCharacterInfoVisible = false;
-                var characterInfo = await _battleNetApi.GetCharacterProfileByNameAndRealm(Name, Realm);
-                
-                if (characterInfo != null)
+                var characterInfo = await _battleNetApi.GetCharacterProfileByNameAndRealm(NameToSearch, RealmToSearch);
+
+                if (characterInfo == null)
                 {
-                    Level = characterInfo.Level;                    
-
-                    var classes = await GetClasses();
-                    ClassName = classes.Class.Where(a => a.Id == characterInfo.ClassId).FirstOrDefault()?.Name;
-                    PowerType = classes.Class.Where(a => a.Id == characterInfo.ClassId).FirstOrDefault()?.PowerType;
-
-                    var races = await GetRaces();
-                    RaceName = races.Race.Where(r => r.Id == characterInfo.RaceId).FirstOrDefault()?.Name;
-                    Faction = races.Race.Where(r => r.Id == characterInfo.RaceId).FirstOrDefault()?.Faction;
-
-                    Gender = characterInfo.Gender;
-                    TotalHonorablekills = characterInfo.TotalHonorableKills;
-
-                    IsGridCharacterInfoVisible = true;
+                    Message = "Char or Realm not found";
+                    IsMessageVisible = true;
+                    IsBusy = false;
+                    return;
                 }
+
+                IsMessageVisible = false;
+                Level = characterInfo.Level;
+                Name = characterInfo.Name;
+                Realm = characterInfo.Realm;
+
+                var classes = await GetClasses();
+                ClassName = classes.Class.Where(a => a.Id == characterInfo.ClassId).FirstOrDefault()?.Name;
+                PowerType = classes.Class.Where(a => a.Id == characterInfo.ClassId).FirstOrDefault()?.PowerType;
+
+                var races = await GetRaces();
+                RaceName = races.Race.Where(r => r.Id == characterInfo.RaceId).FirstOrDefault()?.Name;
+                Faction = races.Race.Where(r => r.Id == characterInfo.RaceId).FirstOrDefault()?.Faction;
+
+                Gender = characterInfo.Gender;
+                TotalHonorablekills = characterInfo.TotalHonorableKills;
+
+                IsGridCharacterInfoVisible = true;
+
             }
             catch (Exception ex)
             {
@@ -201,7 +257,7 @@ namespace WoWInfo.ViewModels
         }
 
         private async Task<RaceJson> GetRaces()
-        {          
+        {
             try
             {
                 return await _battleNetApi.GetCharacterRaces();
