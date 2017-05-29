@@ -30,6 +30,9 @@ namespace WoWInfo.Models
         public string Gender => GenderId == 0 ? "Male" : "Female";
 
         [JsonProperty(PropertyName = "totalHonorableKills", NullValueHandling = NullValueHandling.Ignore)]
-        public long TotalHonorableKills { get; set; }        
+        public long TotalHonorableKills { get; set; }
+
+        [JsonProperty(PropertyName = "thumbnail", NullValueHandling = NullValueHandling.Ignore)]
+        public string Thumbnail { get; set; }
     }
 }

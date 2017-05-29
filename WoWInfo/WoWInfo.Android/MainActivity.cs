@@ -11,7 +11,7 @@ using MonkeyHubApp.Droid.Services;
 
 namespace WoWInfo.Droid
 {
-    [Activity(Label = "WoWInfo", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "WoW Info", Icon = "@drawable/wowinfoicon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         //Instalado o pacote Google Cloud Message, pelo Components

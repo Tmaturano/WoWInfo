@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WoWInfo.Helpers;
 using WoWInfo.Models;
 using WoWInfo.Services;
 using Xamarin.Forms;
@@ -144,6 +145,17 @@ namespace WoWInfo.ViewModels
             }
         }
 
+        private string _avatarUrl;
+
+        public string AvatarUrl
+        {
+            get { return _avatarUrl; }
+            set
+            {
+                SetProperty(ref _avatarUrl, value);
+            }
+        }
+
         private bool _isGridCharacterInfoVisible;
 
         public bool IsGridCharacterInfoVisible
@@ -218,6 +230,9 @@ namespace WoWInfo.ViewModels
                 Level = characterInfo.Level;
                 Name = characterInfo.Name;
                 Realm = characterInfo.Realm;
+
+                var thumbnailProfile = characterInfo.Thumbnail.Replace("avatar", "profilemain");
+                AvatarUrl = $"{Settings.UrlRenderCharacter}/{thumbnailProfile}";
 
                 var classes = await GetClasses();
                 ClassName = classes.Class.Where(a => a.Id == characterInfo.ClassId).FirstOrDefault()?.Name;

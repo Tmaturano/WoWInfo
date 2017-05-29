@@ -17,9 +17,13 @@
 
         <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Message}" IsVisible="{Binding IsMessageVisible}"/>
 
+        <Image Source="{Binding AvatarUrl}" Aspect="AspectFit"></Image>
+        
         <ScrollView>
+
             <Grid Padding="10" RowSpacing="10" IsVisible="{Binding IsGridCharacterInfoVisible}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

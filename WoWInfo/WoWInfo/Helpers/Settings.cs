@@ -20,6 +20,8 @@ namespace WoWInfo.Helpers
         const string BlizzKey = "blizzkey";
         private static string BlizzardKeyDefault = string.Empty;
 
+        public static string UrlRenderCharacter => "http://render-us.worldofwarcraft.com/character/";
+
         public static string AuthToken
         {
             get
