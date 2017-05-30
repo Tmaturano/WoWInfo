@@ -9,6 +9,7 @@ namespace WoWInfo.Helpers
     public enum ViewType
     {
         Character = 0,
-        Item = 1
+        Item = 1,
+        Logout = 2
     }
 }

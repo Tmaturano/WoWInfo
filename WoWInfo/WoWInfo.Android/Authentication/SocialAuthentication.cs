@@ -21,9 +21,7 @@ namespace WoWInfo.Droid.Authentication
                 var user = await client.LoginAsync(Forms.Context, provider);
 
                 Settings.AuthToken = user?.MobileServiceAuthenticationToken ?? string.Empty;
-                Settings.UserId = user?.UserId;
-
-                
+                Settings.UserId = user?.UserId;                
 
                 return user;
             }
@@ -31,6 +29,24 @@ namespace WoWInfo.Droid.Authentication
             {
                 //TODO: Log error
                 throw;
+            }
+        }
+
+        public async Task<bool> LogoutAsync(MobileServiceClient client)
+        {
+            try
+            {
+                await client.LogoutAsync();
+
+                Settings.AuthToken = string.Empty;
+                Settings.UserId = string.Empty;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log error
+                return false;                
             }
         }
     }

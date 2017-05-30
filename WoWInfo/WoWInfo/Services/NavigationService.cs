@@ -29,6 +29,12 @@ namespace WoWInfo.Services
             await App.MasterDetail.Detail.Navigation.PushAsync(new ItemPage());
         }
 
+        public async Task NavigateToAboutView()
+        {
+            App.MasterDetail.IsPresented = false;
+            await App.MasterDetail.Detail.Navigation.PushAsync(new AboutPage());
+        }
+
         public void RemovePageFromStack()
         {
             var existingPages = App.Current.MainPage.Navigation.NavigationStack;
@@ -37,6 +43,6 @@ namespace WoWInfo.Services
                 if (page.GetType() == typeof(NavigationPage))
                     App.Current.MainPage.Navigation.RemovePage(page);
             }
-        }   
+        }
     }
 }

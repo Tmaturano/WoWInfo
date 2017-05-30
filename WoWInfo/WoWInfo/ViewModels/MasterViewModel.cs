@@ -10,19 +10,21 @@ namespace WoWInfo.ViewModels
     public class MasterViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
+        private readonly AzureService _azureService;        
 
-        public string UserName => $"Bem vindo {Settings.UserId}!";
+        public string UserName => $"Welcome {Settings.UserId}!";
         
-
         public ObservableCollection<ItemMenu> MenuList { get; }
         
-        public Command <ItemMenu> OpenPageCommand { get; }
+        public Command <ItemMenu> OpenPageCommand { get; }        
 
         public MasterViewModel()
         {            
             _navigationService = DependencyService.Get<INavigationService>();
-            OpenPageCommand = new Command<ItemMenu>(ExecuteOpenPageCommand);
+            _azureService = DependencyService.Get<AzureService>();
 
+            OpenPageCommand = new Command<ItemMenu>(ExecuteOpenPageCommand);
+            
             MenuList = new ObservableCollection<ItemMenu>();
             LoadMenuList();
         }
@@ -31,7 +33,7 @@ namespace WoWInfo.ViewModels
         {
             MenuList.Add(new ItemMenu
             {
-                Title = "Personagem",
+                Title = "Character",
                 Icon = "worgen.png",
                 ViewType = ViewType.Character
 
@@ -42,6 +44,13 @@ namespace WoWInfo.ViewModels
                 Title = "Item",
                 Icon = "sword.png",
                 ViewType = ViewType.Item
+            });
+
+            MenuList.Add(new ItemMenu
+            {
+                Title = "Logout",
+                Icon = "logout.png",
+                ViewType = ViewType.Logout
             });
         }
 
@@ -54,7 +63,10 @@ namespace WoWInfo.ViewModels
                     break;
                 case ViewType.Item:
                      await OpenItemPage();
-                    break;        
+                    break;
+                case ViewType.Logout:
+                    await LogoutAsync();
+                    break;
             }   
         }
 
@@ -66,6 +78,18 @@ namespace WoWInfo.ViewModels
         private async Task OpenItemPage()
         {
              await _navigationService.NavigateToItemView();
+        }
+        
+        private async Task LogoutAsync()
+        {
+            if (!Settings.IsLoggedIn)
+                return;
+
+            if (await _azureService.LogoutAsync())
+            {
+                await _navigationService.NavigateToLoginView();
+                _navigationService.RemovePageFromStack();
+            }
         }
     }
 }

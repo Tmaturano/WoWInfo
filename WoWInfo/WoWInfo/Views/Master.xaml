@@ -8,7 +8,7 @@
              Icon="menu.png">
 
     <StackLayout Orientation="Vertical">
-        
+
         <StackLayout BackgroundColor="#e74c3c"
                      HeightRequest="75">
 
@@ -27,24 +27,23 @@
                         RowHeight="60"                        
                         BackgroundColor="#e8e8e8">
 
-                <ListView.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
                         <StackLayout VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal"
-                             Padding="20,10,0,10"
-                             Spacing="20">
+                                    Orientation="Horizontal"
+                                    Padding="20,10,0,10"
+                                    Spacing="20">
 
-                         <Image Source="{Binding Icon}"
-                         WidthRequest="40"
-                         HeightRequest="40"
-                         VerticalOptions="Center" />
+                            <Image Source="{Binding Icon}"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center" />
 
-                         <Label Text="{Binding Title}"
-                         FontSize="Medium"
-                         VerticalOptions="Center"
-                         TextColor="Black"/>
+                            <Label Text="{Binding Title}"
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

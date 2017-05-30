@@ -56,6 +56,6 @@ namespace WoWInfo.ViewModels
                 return Task.FromResult(true);
 
             return _azureService.LoginAsync();
-        }
+        }        
     }
 }

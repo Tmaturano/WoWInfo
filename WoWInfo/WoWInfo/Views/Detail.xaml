@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WoWInfo.Views.Detail"
-             Title="Detalhe">
+             Title="Latest news">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="About" Command="{Binding AboutCommand}"/>        
+    </ContentPage.ToolbarItems>
 
     <StackLayout Margin="20">
-        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Aqui pode ser uma lista das últimas notícias."/>
+        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="TODO: Latest news come here in list format."/>
     </StackLayout>
     
 </ContentPage>

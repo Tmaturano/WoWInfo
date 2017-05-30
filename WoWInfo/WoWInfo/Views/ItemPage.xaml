@@ -4,5 +4,5 @@
              x:Class="WoWInfo.Views.ItemPage"
              Title="Item">
 
-    <Label Text="Página do item" VerticalOptions="Center" HorizontalOptions="Center"/>
+    <Label Text="Item Page - TODO" VerticalOptions="Center" HorizontalOptions="Center"/>
 </ContentPage>

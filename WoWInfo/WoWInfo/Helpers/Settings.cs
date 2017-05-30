@@ -16,10 +16,7 @@ namespace WoWInfo.Helpers
 
         const string AuthTokenKey = "authtoken";
         private static string AuthTokenDefault = string.Empty;
-
-        const string BlizzKey = "blizzkey";
-        private static string BlizzardKeyDefault = string.Empty;
-
+        
         public static string UrlRenderCharacter => "http://render-us.worldofwarcraft.com/character/";
 
         public static string AuthToken
@@ -59,17 +56,7 @@ namespace WoWInfo.Helpers
             }
         }
 
-        public static string BlizzardKey
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(BlizzKey, BlizzardKeyDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(BlizzKey, value);
-            }
-        }
+        public static string BlizzardApiKey => "zeq6gebfq2z57zxqbnvfm5s7yz685nw5";        
 
         public static bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserId);
 

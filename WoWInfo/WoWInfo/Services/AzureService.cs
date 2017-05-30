@@ -14,6 +14,11 @@ namespace WoWInfo.Services
 
         public MobileServiceClient Client { get; set; }
 
+        public AzureService()
+        {
+            Initialize();
+        }
+
         private void Initialize()
         {
             Client = new MobileServiceClient(AppUrl);
@@ -30,7 +35,7 @@ namespace WoWInfo.Services
 
         public async Task<bool> LoginAsync()
         {
-            Initialize();
+            //Initialize();
 
             var auth = DependencyService.Get<IAuthentication>();
             var user = await auth.LoginAsync(Client, MobileServiceAuthenticationProvider.Facebook);
@@ -55,6 +60,13 @@ namespace WoWInfo.Services
             }
 
             return true;
+        }
+
+        public async Task<bool> LogoutAsync()
+        {
+            var auth = DependencyService.Get<IAuthentication>();
+
+            return await auth.LogoutAsync(Client);            
         }
     }
 }
