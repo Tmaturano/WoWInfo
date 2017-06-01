@@ -11,13 +11,14 @@ namespace WoWInfo.Helpers
     {
         private static ISettings AppSettings => CrossSettings.Current;
 
-        const string UserIdKey = "userid";
-        private static string UserIdDefault = string.Empty;
+        public static string UrlRenderCharacter => "http://render-us.worldofwarcraft.com/character/";
+
+        public static string BlizzardApiKey => "zeq6gebfq2z57zxqbnvfm5s7yz685nw5";
+        public static bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserId);
+
 
         const string AuthTokenKey = "authtoken";
-        private static string AuthTokenDefault = string.Empty;
-        
-        public static string UrlRenderCharacter => "http://render-us.worldofwarcraft.com/character/";
+        private static string AuthTokenDefault = string.Empty;                        
 
         public static string AuthToken
         {
@@ -31,6 +32,9 @@ namespace WoWInfo.Helpers
             }
         }
 
+        const string UserIdKey = "userid";
+        private static string UserIdDefault = string.Empty;
+
         public static string UserId
         {
             get
@@ -43,23 +47,34 @@ namespace WoWInfo.Helpers
             }
         }
 
-        //TODO: Verificar como pega o nome do usuário que acabou de logar
+        const string UserNameKey = "username";
+        private static string UserNameDefault = string.Empty;
+
         public static string UserName
         {
             get
             {
-                return AppSettings.GetValueOrDefault("", string.Empty);
+                return AppSettings.GetValueOrDefault(UserNameKey, UserNameDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue("", value);
+                AppSettings.AddOrUpdateValue(UserNameKey, value);
             }
         }
 
-        public static string BlizzardApiKey => "zeq6gebfq2z57zxqbnvfm5s7yz685nw5";        
+        const string UserImageUrlKey = "userimg";
+        private static string UserImageUrlDefault = string.Empty;
 
-        public static bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserId);
-
-
+        public static string UserImageUrl
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserImageUrlKey, UserImageUrlDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserImageUrlKey, value);
+            }
+        }
     }
 }

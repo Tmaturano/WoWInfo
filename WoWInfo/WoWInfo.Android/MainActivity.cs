@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Gcm.Client;
 using MonkeyHubApp.Droid.Services;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace WoWInfo.Droid
 {
@@ -36,7 +37,9 @@ namespace WoWInfo.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
+
             try
             {
                 //instalado a library GcmClient e verificamos se está tudo Ok

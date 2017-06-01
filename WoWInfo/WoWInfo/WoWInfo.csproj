@@ -42,13 +42,15 @@
     <Compile Include="Controls\MyListView.cs" />
     <Compile Include="Helpers\ViewType.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\AppServiceIdentity.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\ClassJson.cs" />
     <Compile Include="Models\ItemMenu.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\RaceJson.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\FacebookProfile.cs" />
+    <Compile Include="Models\UserClaim.cs" />
     <Compile Include="Services\AzureService.cs" />
     <Compile Include="Services\BattleNetApi.cs" />
     <Compile Include="Services\IBattleNetApi.cs" />
@@ -94,6 +96,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\portable-net45+wp80+win8+wpa81\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.3.1.0\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>
     </Reference>

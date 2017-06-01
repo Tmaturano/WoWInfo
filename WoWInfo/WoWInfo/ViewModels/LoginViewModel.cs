@@ -46,7 +46,7 @@ namespace WoWInfo.ViewModels
             {
                 await _navigationService.NavigateToMainView();
 
-                _navigationService.RemovePageFromStack();
+                //_navigationService.RemovePageFromStack();
             }         
         }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Android.Webkit;
 
 [assembly: Xamarin.Forms.Dependency(typeof(SocialAuthentication))]
 namespace WoWInfo.Droid.Authentication
@@ -36,6 +37,7 @@ namespace WoWInfo.Droid.Authentication
         {
             try
             {
+                CookieManager.Instance.RemoveAllCookie();
                 await client.LogoutAsync();
 
                 Settings.AuthToken = string.Empty;

@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using WoWInfo.Authentication;
 using WoWInfo.Services;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using System.Net.Http;
+using WoWInfo.Models;
+using Newtonsoft.Json;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AzureService))]
 namespace WoWInfo.Services
@@ -35,8 +39,6 @@ namespace WoWInfo.Services
 
         public async Task<bool> LoginAsync()
         {
-            //Initialize();
-
             var auth = DependencyService.Get<IAuthentication>();
             var user = await auth.LoginAsync(Client, MobileServiceAuthenticationProvider.Facebook);
 
@@ -59,6 +61,8 @@ namespace WoWInfo.Services
                 Settings.UserId = user.UserId;
             }
 
+            await SetUserInformationAsync();
+
             return true;
         }
 
@@ -67,6 +71,27 @@ namespace WoWInfo.Services
             var auth = DependencyService.Get<IAuthentication>();
 
             return await auth.LogoutAsync(Client);            
+        }
+
+        public async Task SetUserInformationAsync()
+        {
+            var identities = await Client.InvokeApiAsync<List<AppServiceIdentity>>("/.auth/me");
+
+            if (identities.Count <= 0)
+                return;
+
+            var name = identities[0].UserClaims.Find(c => c.Type.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname")).Value;
+            var userToken = identities[0].AccessToken;
+
+            var requestUrl = $"https://graph.facebook.com/v2.9/me/?fields=picture&access_token={userToken}";
+            var httpClient = new HttpClient();
+
+            var userJson = await httpClient.GetStringAsync(requestUrl);
+
+            var facebookProfile = JsonConvert.DeserializeObject<FacebookProfile>(userJson);
+
+            Settings.UserName = name;
+            Settings.UserImageUrl = facebookProfile.Picture.Data.Url;            
         }
     }
 }

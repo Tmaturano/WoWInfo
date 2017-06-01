@@ -12,8 +12,10 @@ namespace WoWInfo.ViewModels
         private readonly INavigationService _navigationService;
         private readonly AzureService _azureService;        
 
-        public string UserName => $"Welcome {Settings.UserId}!";
-        
+        public string UserName => $"Welcome {Settings.UserName}!";
+
+        public string UserImageUrl => Settings.UserImageUrl;
+
         public ObservableCollection<ItemMenu> MenuList { get; }
         
         public Command <ItemMenu> OpenPageCommand { get; }        
@@ -88,7 +90,7 @@ namespace WoWInfo.ViewModels
             if (await _azureService.LogoutAsync())
             {
                 await _navigationService.NavigateToLoginView();
-                _navigationService.RemovePageFromStack();
+               // _navigationService.RemovePageFromStack();
             }
         }
     }
