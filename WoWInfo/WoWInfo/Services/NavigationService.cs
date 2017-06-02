@@ -8,9 +8,9 @@ namespace WoWInfo.Services
 {
     public class NavigationService : INavigationService
     {
-        public async Task NavigateToLoginView()
+        public void NavigateToLoginView()
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new LoginPage());            
+            App.Current.MainPage = new LoginPage();
         }
 
         public async Task NavigateToMainView()

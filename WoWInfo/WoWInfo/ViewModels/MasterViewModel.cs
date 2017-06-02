@@ -89,8 +89,7 @@ namespace WoWInfo.ViewModels
 
             if (await _azureService.LogoutAsync())
             {
-                await _navigationService.NavigateToLoginView();
-               // _navigationService.RemovePageFromStack();
+                _navigationService.NavigateToLoginView();     
             }
         }
     }
