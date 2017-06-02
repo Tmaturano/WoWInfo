@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:WoWInfo.Converters;assembly=WoWInfo"
              x:Class="WoWInfo.Views.CharacterPage"
              Title="Character info">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:NegateBooleanConverter x:Key="inverter"></c:NegateBooleanConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout Orientation="Vertical" Padding="10">
         <StackLayout Orientation="Vertical" HorizontalOptions="Center">
@@ -17,7 +24,7 @@
 
         <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Message}" IsVisible="{Binding IsMessageVisible}"/>
 
-        <Image Source="{Binding AvatarUrl}" Aspect="AspectFit"></Image>
+        <Image Source="{Binding AvatarUrl}" Aspect="AspectFit" IsVisible="{Binding IsMessageVisible, Converter={StaticResource inverter}}"></Image>
         
         <ScrollView>
 

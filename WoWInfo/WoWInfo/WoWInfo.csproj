@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Authentication\IAuthentication.cs" />
     <Compile Include="Controls\MyListView.cs" />
+    <Compile Include="Converters\NegateBooleanConverter.cs" />
     <Compile Include="Helpers\ViewType.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\AppServiceIdentity.cs" />

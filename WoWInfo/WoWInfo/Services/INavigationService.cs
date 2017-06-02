@@ -4,7 +4,7 @@ namespace WoWInfo.Services
 {
     public interface INavigationService
     {
-        Task NavigateToLoginView();
+        void NavigateToLoginView();
         Task NavigateToMainView();
         Task NavigateToCharacterView();
         Task NavigateToItemView();
