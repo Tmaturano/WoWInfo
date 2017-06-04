@@ -9,6 +9,5 @@ namespace WoWInfo.Services
         Task NavigateToCharacterView();
         Task NavigateToItemView();
         Task NavigateToAboutView();
-        void RemovePageFromStack();
     }
 }

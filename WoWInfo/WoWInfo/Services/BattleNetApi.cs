@@ -24,10 +24,7 @@ namespace WoWInfo.Services
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         public async Task<ClassJson> GetCharacterClasses()
-        {            
-            //var json = await httpClient.GetStringAsync($"{BaseUrl}data/character/classes?locale=en_US&apikey={WowInfoBattleNetApiKey}").ConfigureAwait(false);
-            //var converted = JsonConvert.DeserializeObject<ClassJson>(json);
-                                 
+        {                                             
             var response = await _httpClient.GetAsync($"{BaseUrl}data/character/classes?locale=en_US&apikey={Settings.BlizzardApiKey}").ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
