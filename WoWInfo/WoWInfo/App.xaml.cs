@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WoWInfo.Helpers;
 using WoWInfo.Services;
 using WoWInfo.Views;
 using Xamarin.Forms;
@@ -23,7 +24,10 @@ namespace WoWInfo
             InitializeComponent();
             RegisterDependencies();
 
-            MainPage = new LoginPage();
+            if (Settings.IsLoggedIn)
+                MainPage = new MainPage();
+            else
+                MainPage = new LoginPage();
         }
 
         protected override void OnStart()
