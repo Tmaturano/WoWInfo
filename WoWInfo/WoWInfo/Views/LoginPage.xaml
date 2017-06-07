@@ -9,6 +9,8 @@
             <BoxView HeightRequest="1" WidthRequest="150" HorizontalOptions="Center" BackgroundColor="Black" />
             <Button Text="Facebook" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" 
                     Command="{Binding LoginCommand}" BackgroundColor="#6495ed" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>
 

@@ -40,14 +40,15 @@ namespace WoWInfo.ViewModels
 
         private async void ExecuteLoginCommandAsync()
         {
-            if (IsBusy || !(await LoginAsync()))
+            IsBusy = true;
+            if (!await LoginAsync())
                 return;
             else
             {
-                await _navigationService.NavigateToMainView();
+                await _navigationService.NavigateToMainView();                
+            }
 
-                //_navigationService.RemovePageFromStack();
-            }         
+            IsBusy = false;
         }
 
         public Task<bool> LoginAsync()
