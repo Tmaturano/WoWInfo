@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Android.Webkit;
+using Plugin.CurrentActivity;
 
 [assembly: Xamarin.Forms.Dependency(typeof(SocialAuthentication))]
 namespace WoWInfo.Droid.Authentication
@@ -19,7 +20,7 @@ namespace WoWInfo.Droid.Authentication
         {
             try
             {
-                var user = await client.LoginAsync(Forms.Context, provider);
+                var user = await client.LoginAsync(CrossCurrentActivity.Current.Activity, provider, "wowinfoexternalurl"); // (Forms.Context, provider, "");
 
                 Settings.AuthToken = user?.MobileServiceAuthenticationToken ?? string.Empty;
                 Settings.UserId = user?.UserId;                
