@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWInfo.UWP", "WoWInfo\WoWI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWInfo.iOS", "WoWInfo\WoWInfo.iOS\WoWInfo.iOS.csproj", "{E5327DE3-8984-4738-99B2-D97644955CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWInfor.Shared", "WoWInfor.Shared\WoWInfor.Shared.csproj", "{903B8ACB-97B7-421C-AE51-7252FC3954B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWInfo.Shared", "WoWInfor.Shared\WoWInfo.Shared.csproj", "{903B8ACB-97B7-421C-AE51-7252FC3954B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
